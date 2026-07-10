@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Saloni Honrao — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #faf8f4;
+  --warm: #f4efe8;
+  --ink: #1a1714;
+  --muted: #8a7f75;
+  --muted2: #b5aa9e;
+  --gold: #c9a96e;
+  --gold2: #e8d4b0;
+  --border: rgba(201,169,110,0.2);
+  --border2: rgba(201,169,110,0.08);
+  --surface: rgba(255,255,255,0.55);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Cursor */
+#cursor {
+  width: 8px; height: 8px;
+  background: var(--gold); border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+}
+#cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid var(--gold); border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998; opacity: 0.55;
+  transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), width 0.2s, height 0.2s;
+}
+
+/* Noise */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: 0.5;
+}
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.6rem 5rem;
+  backdrop-filter: blur(20px);
+  background: rgba(250,248,244,0.88);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.4s;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400; font-size: 1.4rem;
+  letter-spacing: 0.05em; color: var(--ink); text-decoration: none;
+}
+.nav-logo em { font-style: italic; color: var(--gold); }
+.nav-links { display: flex; gap: 3rem; list-style: none; }
+.nav-links a {
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta {
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 0.65rem 1.8rem; border: 1px solid var(--gold);
+  color: var(--ink); text-decoration: none; transition: background 0.3s, color 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: white; }
+
+/* Hero */
+#hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; position: relative; z-index: 1;
+  padding: 8rem 5rem 4rem; gap: 4rem; overflow: hidden;
+}
+.hero-bg-text {
+  position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(10rem, 20vw, 22rem); font-weight: 300; line-height: 1;
+  color: rgba(201,169,110,0.055); pointer-events: none; user-select: none;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+}
+.hero-tag::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.8rem, 7.5vw, 7rem); font-weight: 300;
+  line-height: 1.02; letter-spacing: -0.02em; color: var(--ink);
+  opacity: 0; animation: fadeUp 0.8s 0.35s forwards; margin-bottom: 0.2rem;
+}
+.hero-name em { font-style: italic; color: var(--gold); }
+.hero-surname {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.8rem, 7.5vw, 7rem); font-weight: 300;
+  line-height: 1.02; letter-spacing: -0.02em;
+  opacity: 0; animation: fadeUp 0.8s 0.45s forwards; margin-bottom: 2rem;
+}
+.hero-roles {
+  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 0.7s 0.6s forwards;
+}
+.hero-role-pill {
+  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.35rem 1rem; border: 1px solid var(--border);
+  color: var(--muted); background: var(--surface);
+}
+.hero-bio {
+  font-size: 0.92rem; color: var(--muted); line-height: 1.88;
+  max-width: 430px; margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp 0.7s 0.75s forwards;
+}
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.7s 0.9s forwards;
+}
+.btn {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 0.9rem 2.2rem; text-decoration: none; transition: all 0.3s; cursor: none;
+}
+.btn-primary { background: var(--ink); color: var(--cream); }
+.btn-primary:hover { background: var(--gold); }
+.btn-ghost { border: 1px solid var(--border2); color: var(--muted); background: transparent; }
+.btn-ghost:hover { border-color: var(--gold); color: var(--ink); }
+
+/* Portrait */
+.hero-right {
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; animation: fadeIn 1.1s 0.6s forwards; position: relative;
+}
+.portrait-frame { width: min(360px, 88vw); aspect-ratio: 3/4; position: relative; }
+.portrait-border { position: absolute; inset: 0; border: 1px solid var(--border); }
+.portrait-border-inner { position: absolute; inset: 12px; border: 1px solid var(--border2); }
+.portrait-fill {
+  position: absolute; inset: 24px;
+  background: linear-gradient(155deg, var(--warm) 0%, var(--gold2) 100%);
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
+}
+.portrait-monogram {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem; font-weight: 300; line-height: 1;
+  color: rgba(201,169,110,0.42);
+}
+.portrait-subtitle { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted2); }
+.pc { position: absolute; width: 20px; height: 20px; border-color: var(--gold); border-style: solid; }
+.pc.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.pc.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.pc.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.pc.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+/* Divider */
+.divider {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; padding: 0 5rem; gap: 2rem; margin: 1rem 0;
+}
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-ornament { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); }
+
+/* Section base */
+.section-wrap { position: relative; z-index: 1; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 7rem 5rem; }
+.section-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.8rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.section-eyebrow::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--gold); }
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 300;
+  letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 1rem;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+/* About */
+#about .section-inner {
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; align-items: start;
+}
+.about-text { font-size: 0.92rem; color: var(--muted); line-height: 1.9; }
+.about-text + .about-text { margin-top: 1.2rem; }
+.about-rows { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1px; }
+.arow {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.78rem;
+}
+.arow:first-child { border-top: 1px solid var(--border); }
+.arow-label { color: var(--muted2); letter-spacing: 0.08em; }
+.arow-val { color: var(--ink); font-weight: 400; }
+
+/* Skills — dark panel */
+#skills { background: var(--ink); }
+#skills .section-eyebrow { color: var(--gold); }
+#skills .section-eyebrow::after { background: var(--gold); }
+#skills .section-title { color: var(--cream); }
+.skills-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; margin-top: 4rem; }
+.skills-intro { font-size: 0.88rem; color: rgba(250,248,244,0.4); line-height: 1.9; }
+.skills-cats { display: flex; flex-direction: column; gap: 2.5rem; }
+.skill-cat { border-bottom: 1px solid rgba(201,169,110,0.12); padding-bottom: 2rem; }
+.skill-cat:last-child { border-bottom: none; padding-bottom: 0; }
+.skill-cat-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+.skill-cat-name { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+.skill-cat-sub { font-size: 0.58rem; color: rgba(250,248,244,0.22); letter-spacing: 0.1em; }
+.skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-pill {
+  font-size: 0.72rem; padding: 0.4rem 1rem;
+  border: 1px solid rgba(201,169,110,0.18);
+  color: rgba(250,248,244,0.65); letter-spacing: 0.04em;
+  transition: border-color 0.3s, color 0.3s;
+}
+.skill-pill:hover { border-color: var(--gold); color: var(--gold); }
+
+/* Contact — also dark */
+#contact { background: var(--ink); }
+#contact .section-eyebrow { color: var(--gold); }
+#contact .section-eyebrow::after { background: var(--gold); }
+#contact .section-title { color: var(--cream); }
+.contact-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 7rem; margin-top: 4rem; align-items: start; }
+.contact-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 300;
+  line-height: 1.35; color: var(--cream); margin-bottom: 2rem;
+}
+.contact-lead em { font-style: italic; color: var(--gold); }
+.contact-sub { font-size: 0.85rem; color: rgba(250,248,244,0.38); line-height: 1.85; }
+.contact-items { display: flex; flex-direction: column; }
+.contact-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 0; border-bottom: 1px solid rgba(201,169,110,0.12);
+  text-decoration: none; transition: padding-left 0.3s;
+}
+.contact-item:first-child { border-top: 1px solid rgba(201,169,110,0.12); }
+.contact-item:hover { padding-left: 0.5rem; }
+.ci-left { display: flex; flex-direction: column; gap: 0.2rem; }
+.ci-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+.ci-value { font-size: 0.85rem; color: rgba(250,248,244,0.72); }
+.ci-arrow { color: rgba(201,169,110,0.4); font-size: 0.9rem; transition: transform 0.3s, color 0.3s; }
+.contact-item:hover .ci-arrow { transform: translateX(5px); color: var(--gold); }
+
+/* Footer */
+footer {
+  background: var(--ink); border-top: 1px solid rgba(201,169,110,0.1);
+  padding: 2rem 5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; z-index: 1;
+}
+.footer-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(250,248,244,0.32); letter-spacing: 0.05em; }
+.footer-status {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(250,248,244,0.25);
+}
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #6a9f7b; animation: pulse 2s infinite; }
+.footer-copy { font-size: 0.6rem; color: rgba(250,248,244,0.2); letter-spacing: 0.1em; }
+
+/* Animations */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.reveal {
+  opacity: 0; transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(.25,.46,.45,.94), transform 0.7s cubic-bezier(.25,.46,.45,.94);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+
+@media (max-width: 960px) {
+  nav { padding: 1.2rem 1.8rem; }
+  .nav-links, .nav-cta { display: none; }
+  #hero { grid-template-columns: 1fr; padding: 7rem 1.8rem 4rem; }
+  .hero-right, .hero-bg-text { display: none; }
+  .section-inner { padding: 5rem 1.8rem; }
+  #about .section-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .skills-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+  footer { padding: 1.5rem 1.8rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  .divider { padding: 0 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><em>S</em>aloni Honrao</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta" download>Download resume</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <div class="hero-tag">Open to Internship &amp; Full-Time Roles</div>
+    <div class="hero-name"><em>Saloni</em></div>
+    <div class="hero-surname">Honrao</div>
+    <div class="hero-roles">
+      <span class="hero-role-pill">Computer Engineer</span>
+      <span class="hero-role-pill">Frontend Developer</span>
+      <span class="hero-role-pill">AI Enthusiast</span>
+    </div>
+    <p class="hero-bio">
+      I craft thoughtful digital experiences at the intersection of engineering and design —
+      clean, accessible frontends and AI-powered applications built with purpose.
+    </p>
+    <div class="hero-actions">
+      <a href="#skills" class="btn btn-primary">Explore My Skills</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      <a href="#" class="btn btn-ghost" download>Resume ↓</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="portrait-frame">
+      <div class="portrait-border"></div>
+      <div class="portrait-border-inner"></div>
+      <div class="portrait-fill">
+        <div class="portrait-monogram">SH</div>
+        <div class="portrait-subtitle">Saloni Honrao · Pune</div>
+      </div>
+      <div class="pc tl"></div><div class="pc tr"></div>
+      <div class="pc bl"></div><div class="pc br"></div>
+    </div>
+  </div>
+  <div class="hero-bg-text">SH</div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-ornament">✦</div><div class="divider-line"></div></div>
+
+<!-- ABOUT -->
+<section id="about" class="section-wrap">
+  <div class="section-inner">
+    <div>
+      <div class="section-eyebrow reveal">About Me</div>
+      <h2 class="section-title reveal d1">Engineering with<br><em>purpose &amp; precision</em></h2>
+    </div>
+    <div>
+      <p class="about-text reveal d1">
+        I'm Saloni Honrao, a Computer Engineering student from Pune with a genuine love for building
+        elegant, user-centric applications. My focus spans frontend development —
+        creating responsive, accessible interfaces — and the fundamentals of Artificial Intelligence,
+        exploring how intelligent systems can be applied meaningfully.
+      </p>
+      <p class="about-text reveal d2">
+        I believe great software is thoughtful software. I'm actively seeking
+        internship and full-time opportunities where I can contribute to impactful products,
+        grow alongside talented teams, and keep solving interesting problems every day.
+      </p>
+      <div class="about-rows reveal d3">
+        <div class="arow">
+          <span class="arow-label">Location</span>
+          <span class="arow-val">Pune, Maharashtra, India</span>
+        </div>
+        <div class="arow">
+          <span class="arow-label">Degree</span>
+          <span class="arow-val">B.E. Computer Engineering</span>
+        </div>
+        <div class="arow">
+          <span class="arow-label">Focus Areas</span>
+          <span class="arow-val">Frontend · AI · Problem Solving</span>
+        </div>
+        <div class="arow">
+          <span class="arow-label">Status</span>
+          <span class="arow-val" style="color:var(--gold)">✦ Available for Opportunities</span>
+        </div>
+        <div class="arow">
+          <span class="arow-label">Languages</span>
+          <span class="arow-val">English · Hindi · Marathi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-ornament">✦</div><div class="divider-line"></div></div>
+
+<!-- SKILLS -->
+<section id="skills" class="section-wrap">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Technical Stack</div>
+    <h2 class="section-title reveal d1">What I work <em>with</em></h2>
+    <div class="skills-layout">
+      <p class="skills-intro reveal d2">
+        A curated set of tools and technologies I've built real things with —
+        focused on frontend excellence, solid engineering fundamentals, and applied AI.
+        <br><br>
+        Always learning. Always building.
+      </p>
+      <div class="skills-cats">
+        <div class="skill-cat reveal">
+          <div class="skill-cat-head">
+            <span class="skill-cat-name">Frontend Development</span>
+            <span class="skill-cat-sub">Core Strength</span>
+          </div>
+          <div class="skill-pills">
+            <span class="skill-pill">HTML</span>
+            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Responsive Design</span>
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Accessibility</span>
+          </div>
+        </div>
+        <div class="skill-cat reveal d1">
+          <div class="skill-cat-head">
+            <span class="skill-cat-name">AI Fundamentals</span>
+            <span class="skill-cat-sub">Growing Expertise</span>
+          </div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+	    <span class="skill-pill">Natural language Processing</span>
+	    <span class="skill-pill">AI Ethics</span>
+            
+          </div>
+        </div>
+        <div class="skill-cat reveal d2">
+          <div class="skill-cat-head">
+            <span class="skill-cat-name">Engineering &amp; Tools</span>
+            <span class="skill-cat-sub">Solid Foundation</span>
+          </div>
+          <div class="skill-pills">
+            <span class="skill-pill">C / C++</span>
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">Git &amp; GitHub</span>
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">Operating system</span>
+            <span class="skill-pill">REST APIs</span>
+         
+            <span class="skill-pill">VS Code</span>
+          </div>
+        </div>
+        <div class="skill-cat reveal d3">
+          <div class="skill-cat-head">
+            <span class="skill-cat-name">Soft Skills</span>
+            <span class="skill-cat-sub">Always Relevant</span>
+          </div>
+          <div class="skill-pills">
+            <span class="skill-pill">Problem Solving</span>
+            <span class="skill-pill">Team Collaboration</span>
+            <span class="skill-pill">Communication</span>
+            <span class="skill-pill">Adaptability</span>
+            <span class="skill-pill">Quick Learner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-wrap">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Get In Touch</div>
+    <h2 class="section-title reveal d1">Let's <em>work together</em></h2>
+    <div class="contact-layout">
+      <div>
+        <p class="contact-lead reveal d2">
+          Open to internships, collaborations, and full-time roles in <em>frontend or AI development.</em>
+        </p>
+        <p class="contact-sub reveal d3">
+          Whether you have a role in mind, a project to discuss, or just want to say hello —
+          my inbox is always open. I respond within 24 hours.
+        </p>
+      </div>
+      <div class="contact-items reveal d2">
+        <a href="mailto:honraosaloni@gmail.com" class="contact-item">
+          <div class="ci-left">
+            <span class="ci-label">Email</span>
+            <span class="ci-value">saloni.honrao@email.com</span>
+          </div>
+          <span class="ci-arrow">→</span>
+        </a>
+        <a href="https://linkedin.com/in/salonihonrao" target="_blank" class="contact-item">
+          <div class="ci-left">
+            <span class="ci-label">LinkedIn</span>
+            <span class="ci-value">linkedin.com/in/salonihonrao</span>
+          </div>
+          <span class="ci-arrow">→</span>
+        </a>
+        <a href="https://github.com/salonihonrao" target="_blank" class="contact-item">
+          <div class="ci-left">
+            <span class="ci-label">GitHub</span>
+            <span class="ci-value">github.com/salonihonrao</span>
+          </div>
+          <span class="ci-arrow">→</span>
+        </a>
+        <a href="#" class="contact-item" download>
+          <div class="ci-left">
+            <span class="ci-label">Resume</span>
+            <span class="ci-value">Download PDF ↓</span>
+          </div>
+          <span class="ci-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Saloni Honrao</span>
+  <div class="footer-status"><span class="status-dot"></span>Available · Pune, India</div>
+  <span class="footer-copy">© 2025 · Built with care</span>
+</footer>
+
+<script>
+/* Cursor */
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+});
+(function loop() {
+  rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
+  ring.style.transform = `translate(${rx - 16}px, ${ry - 16}px)`;
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a, .btn, .skill-pill').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.width = '50px'; ring.style.height = '50px'; });
+  el.addEventListener('mouseleave', () => { ring.style.width = '32px'; ring.style.height = '32px'; });
+});
+
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* Nav shrink */
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.style.padding = window.scrollY > 60 ? '0.9rem 5rem' : '1.6rem 5rem';
+});
+</script>
+</body>
+</html>
