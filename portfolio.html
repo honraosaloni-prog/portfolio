@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -18,7 +18,6 @@
   --border: rgba(201,169,110,0.2);
   --border2: rgba(201,169,110,0.08);
   --surface: rgba(255,255,255,0.55);
-
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -237,6 +236,34 @@ nav {
 }
 .skill-pill:hover { border-color: var(--gold); color: var(--gold); }
 
+/* Certificates */
+.cert-intro {
+  font-size: 0.88rem; color: var(--muted); line-height: 1.9;
+  max-width: 640px; margin-bottom: 3.5rem;
+}
+.cert-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.4rem;
+}
+.cert-card {
+  border: 1px solid var(--border); background: var(--surface);
+  padding: 1.8rem 1.6rem; position: relative; transition: border-color 0.3s, transform 0.3s;
+}
+.cert-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.cert-num {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 0.85rem; color: var(--gold); letter-spacing: 0.05em; margin-bottom: 0.9rem;
+}
+.cert-name {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500;
+  font-size: 1.28rem; color: var(--ink); line-height: 1.3; margin-bottom: 0.6rem;
+}
+.cert-issuer {
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.3rem;
+}
+.cert-year { font-size: 0.72rem; color: var(--muted2); }
+
 /* Contact — also dark */
 #contact { background: var(--ink); }
 #contact .section-eyebrow { color: var(--gold); }
@@ -302,6 +329,7 @@ footer {
   .section-inner { padding: 5rem 1.8rem; }
   #about .section-inner { grid-template-columns: 1fr; gap: 3rem; }
   .skills-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .cert-grid { grid-template-columns: 1fr; }
   .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
   footer { padding: 1.5rem 1.8rem; flex-direction: column; gap: 0.5rem; text-align: center; }
   .divider { padding: 0 1.8rem; }
@@ -319,9 +347,10 @@ footer {
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#certificates">Certificates</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta" download>Download resume</a>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
 </nav>
 
 <!-- HERO -->
@@ -341,8 +370,8 @@ footer {
     </p>
     <div class="hero-actions">
       <a href="#skills" class="btn btn-primary">Explore My Skills</a>
+      <a href="#certificates" class="btn btn-ghost">View Certificates</a>
       <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-      <a href="#" class="btn btn-ghost" download>Resume ↓</a>
     </div>
   </div>
   <div class="hero-right">
@@ -482,6 +511,58 @@ footer {
   </div>
 </section>
 
+<div class="divider"><div class="divider-line"></div><div class="divider-ornament">✦</div><div class="divider-line"></div></div>
+
+<!-- CERTIFICATES -->
+<section id="certificates" class="section-wrap">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Continuous Learning</div>
+    <h2 class="section-title reveal d1">Certifications &amp; <em>credentials</em></h2>
+    <p class="cert-intro reveal d2">
+      Courses and credentials I've completed to sharpen my skills in frontend development,
+      artificial intelligence, and core engineering fundamentals.
+    </p>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-num">01</div>
+        <div class="cert-name">Responsive Web Design</div>
+        <div class="cert-issuer">freeCodeCamp</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card reveal d1">
+        <div class="cert-num">02</div>
+        <div class="cert-name">Python for Everybody</div>
+        <div class="cert-issuer">University of Michigan · Coursera</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card reveal d2">
+        <div class="cert-num">03</div>
+        <div class="cert-name">Introduction to Artificial Intelligence</div>
+        <div class="cert-issuer">Google / IBM SkillsBuild</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card reveal d3">
+        <div class="cert-num">04</div>
+        <div class="cert-name">Natural Language Processing Fundamentals</div>
+        <div class="cert-issuer">NPTEL</div>
+        <div class="cert-year">2025</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-num">05</div>
+        <div class="cert-name">Git &amp; GitHub for Developers</div>
+        <div class="cert-issuer">Coursera</div>
+        <div class="cert-year">2025</div>
+      </div>
+      <div class="cert-card reveal d1">
+        <div class="cert-num">06</div>
+        <div class="cert-name">Database Management with MySQL</div>
+        <div class="cert-issuer">Oracle Academy</div>
+        <div class="cert-year">2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="section-wrap">
   <div class="section-inner">
@@ -512,17 +593,10 @@ footer {
           </div>
           <span class="ci-arrow">→</span>
         </a>
-        <a href="https://github.com/salonihonrao" target="_blank" class="contact-item">
+        <a href="https://github.com/honraosaloni-prog" target="_blank" class="contact-item">
           <div class="ci-left">
             <span class="ci-label">GitHub</span>
-            <span class="ci-value">github.com/salonihonrao</span>
-          </div>
-          <span class="ci-arrow">→</span>
-        </a>
-        <a href="#" class="contact-item" download>
-          <div class="ci-left">
-            <span class="ci-label">Resume</span>
-            <span class="ci-value">Download PDF ↓</span>
+            <span class="ci-value">github.com/honraosaloni-prog</span>
           </div>
           <span class="ci-arrow">→</span>
         </a>
