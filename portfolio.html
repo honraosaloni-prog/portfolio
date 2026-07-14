@@ -30,7 +30,6 @@ body {
   cursor: none;
 }
 
-
 /* Cursor */
 #cursor {
   width: 8px; height: 8px;
@@ -237,6 +236,47 @@ nav {
 }
 .skill-pill:hover { border-color: var(--gold); color: var(--gold); }
 
+/* Experience */
+.exp-list { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 0; }
+.exp-item { border-bottom: 1px solid var(--border); padding: 2.2rem 0; }
+.exp-item:first-child { border-top: 1px solid var(--border); }
+.exp-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem;
+}
+.exp-role {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500;
+  font-size: 1.35rem; color: var(--ink); line-height: 1.3;
+}
+.exp-company { font-size: 0.76rem; color: var(--gold); letter-spacing: 0.04em; margin-top: 0.25rem; }
+.exp-date { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted2); white-space: nowrap; }
+.exp-desc { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; max-width: 760px; }
+.exp-desc li {
+  font-size: 0.85rem; color: var(--muted); line-height: 1.75; padding-left: 1.1rem; position: relative;
+}
+.exp-desc li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+/* Projects */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.6rem; margin-top: 3.5rem;
+}
+.project-card {
+  border: 1px solid var(--border); background: var(--surface);
+  padding: 2.2rem 2rem; transition: border-color 0.3s, transform 0.3s;
+}
+.project-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.project-title {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500;
+  font-size: 1.5rem; color: var(--ink); margin-bottom: 0.9rem;
+}
+.project-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.4rem; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.project-tag {
+  font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.3rem 0.8rem; border: 1px solid var(--border); color: var(--muted2);
+}
+
 /* Certificates */
 .cert-intro {
   font-size: 0.88rem; color: var(--muted); line-height: 1.9;
@@ -347,6 +387,8 @@ footer {
   <a href="#" class="nav-logo"><em>S</em>aloni Honrao</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certificates">Certificates</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -361,17 +403,19 @@ footer {
     <div class="hero-name"><em>Saloni</em></div>
     <div class="hero-surname">Honrao</div>
     <div class="hero-roles">
-      <span class="hero-role-pill">Computer Engineer</span>
-      <span class="hero-role-pill">Frontend Developer</span>
-      <span class="hero-role-pill">AI Enthusiast</span>
+      <span class="hero-role-pill">Software Developer</span>
+      <span class="hero-role-pill">Software Tester</span>
+      <span class="hero-role-pill">Data Analyst</span>
+      <span class="hero-role-pill">AI Engineer</span>
     </div>
     <p class="hero-bio">
-      I craft thoughtful digital experiences at the intersection of engineering and design —
-      clean, accessible frontends and AI-powered applications built with purpose.
+      Computer Engineering student building end-to-end software, testing it rigorously,
+      and applying AI &amp; data to make it smarter — backed by internships, a published
+      AI research paper, and certifications from IBM and Infosys.
     </p>
     <div class="hero-actions">
-      <a href="#skills" class="btn btn-primary">Explore My Skills</a>
-      <a href="#certificates" class="btn btn-ghost">View Certificates</a>
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#experience" class="btn btn-ghost">Experience</a>
       <a href="#contact" class="btn btn-ghost">Get in Touch</a>
     </div>
   </div>
@@ -401,15 +445,18 @@ footer {
     </div>
     <div>
       <p class="about-text reveal d1">
-        I'm Saloni Honrao, a Computer Engineering student from Pune with a genuine love for building
-        elegant, user-centric applications. My focus spans frontend development —
-        creating responsive, accessible interfaces — and the fundamentals of Artificial Intelligence,
-        exploring how intelligent systems can be applied meaningfully.
+        I'm Saloni Honrao, a Computer Engineering student at TSSM's BSCOER, Pune, with a
+        well-rounded foundation across software development, software testing, data
+        analytics, and AI engineering. I work comfortably across Python, Java, JavaScript,
+        and SQL — and I like understanding a problem from every angle: how to build it,
+        how to break it, and what the data says about it.
       </p>
       <p class="about-text reveal d2">
-        I believe great software is thoughtful software. I'm actively seeking
-        internship and full-time opportunities where I can contribute to impactful products,
-        grow alongside talented teams, and keep solving interesting problems every day.
+        My experience spans hands-on internships in Python development and application
+        testing, a peer-reviewed AI research publication on emotion detection, and
+        industry certifications from IBM and Infosys Springboard. I'm actively seeking
+        internship and full-time opportunities as a Software Developer, Software Tester,
+        Data Analyst, or AI Engineer — anywhere I can build things end-to-end and keep learning fast.
       </p>
       <div class="about-rows reveal d3">
         <div class="arow">
@@ -417,12 +464,16 @@ footer {
           <span class="arow-val">Pune, Maharashtra, India</span>
         </div>
         <div class="arow">
-          <span class="arow-label">Degree</span>
-          <span class="arow-val">B.E. Computer Engineering</span>
+          <span class="arow-label">Education</span>
+          <span class="arow-val">B.E. Computer Engineering, TSSM's BSCOER (2025–Present) · SGPA 8.59/10</span>
         </div>
         <div class="arow">
           <span class="arow-label">Focus Areas</span>
-          <span class="arow-val">Frontend · AI · Problem Solving</span>
+          <span class="arow-val">Software Dev · Testing · Data Analytics · AI</span>
+        </div>
+        <div class="arow">
+          <span class="arow-label">Publication</span>
+          <span class="arow-val">Co-author, IRJMETS · Jan 2025</span>
         </div>
         <div class="arow">
           <span class="arow-label">Status</span>
@@ -439,72 +490,179 @@ footer {
 
 <div class="divider"><div class="divider-line"></div><div class="divider-ornament">✦</div><div class="divider-line"></div></div>
 
-<!-- SKILLS -->
+<!-- EXPERIENCE -->
+<section id="experience" class="section-wrap">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Where I've Worked</div>
+    <h2 class="section-title reveal d1">Internship <em>experience</em></h2>
+    <div class="exp-list">
+      <div class="exp-item reveal d1">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Application Testing (Software Tester) Intern</div>
+            <div class="exp-company">Devsoft Innovations</div>
+          </div>
+          <div class="exp-date">May 2026 – Jun 2026</div>
+        </div>
+        <ul class="exp-desc">
+          <li>Completed structured training in application testing, covering manual testing, defect reporting, and software quality assurance.</li>
+          <li>Executed test cases and identified defects, gaining hands-on experience in software testing practices.</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal d2">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Python Developer Intern</div>
+            <div class="exp-company">L&amp;D Infotech Pvt. Ltd.</div>
+          </div>
+          <div class="exp-date">Jun 2024 – Jul 2024</div>
+        </div>
+        <ul class="exp-desc">
+          <li>Completed structured Python training covering core syntax, OOP, file handling, and data structures over a 6-week program.</li>
+          <li>Independently built practice scripts for each module, applying concepts hands-on from basics through to advanced topics.</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal d3">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">ANNA: An Emotion Detection Using Chatbot</div>
+            <div class="exp-company">Co-author · IRJMETS, Vol. 07 / Issue 01 · Impact Factor 7.868</div>
+          </div>
+          <div class="exp-date">Jan 2025</div>
+        </div>
+        <ul class="exp-desc">
+          <li>Proposed and implemented an NLP-based emotion detection system that classifies user emotions from text and delivers personalized recommendations across music, food, and activity domains via a conversational chatbot.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-ornament">✦</div><div class="divider-line"></div></div>
+
+<!-- PROJECTS -->
+<section id="projects" class="section-wrap">
+  <div class="section-inner">
+    <div class="section-eyebrow reveal">Selected Work</div>
+    <h2 class="section-title reveal d1">Things I've <em>built</em></h2>
+    <div class="projects-grid">
+      <div class="project-card reveal d1">
+        <div class="project-title">SecureDrop</div>
+        <p class="project-desc">
+          A secure file-sharing platform offering temporary, link-based file sharing
+          alongside a personal encrypted workspace. Built the responsive front end with
+          HTML, CSS, and JavaScript, with session-based temporary links and access
+          controls keeping shared files private and time-limited — enabling instant,
+          privacy-conscious phone-to-web transfers without extra software.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="project-card reveal d2">
+        <div class="project-title">DataLens</div>
+        <p class="project-desc">
+          An AI-powered analytics platform that converts raw datasets into simplified
+          insights and interactive visualizations. Used Python for data processing and
+          integrated GenAI-based automated summary generation on top of a
+          chart-driven dashboard — helping non-technical users interpret trends and
+          generate reports without manual analysis.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">GenAI</span>
+          <span class="project-tag">Data Visualization</span>
+        </div>
+      </div>
+      <div class="project-card reveal d3">
+        <div class="project-title">EditFlow</div>
+        <p class="project-desc">
+          A collaborative platform for video editors with Git-inspired version tracking
+          and structured revision management. Designed a branching-style workflow to
+          track project versions and edits, paired with an organized interface for
+          managing files, revisions, and history — preventing version conflicts and
+          simplifying review cycles during post-production.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Workflow Design</span>
+          <span class="project-tag">Version Control</span>
+          <span class="project-tag">UI/UX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="skills" class="section-wrap">
   <div class="section-inner">
     <div class="section-eyebrow reveal">Technical Stack</div>
     <h2 class="section-title reveal d1">What I work <em>with</em></h2>
     <div class="skills-layout">
       <p class="skills-intro reveal d2">
-        A curated set of tools and technologies I've built real things with —
-        focused on frontend excellence, solid engineering fundamentals, and applied AI.
+        A well-rounded stack spanning core programming, web &amp; database fundamentals,
+        applied AI/data work, and structured software testing.
         <br><br>
         Always learning. Always building.
       </p>
       <div class="skills-cats">
         <div class="skill-cat reveal">
           <div class="skill-cat-head">
-            <span class="skill-cat-name">Frontend Development</span>
+            <span class="skill-cat-name">Programming &amp; Web</span>
             <span class="skill-cat-sub">Core Strength</span>
           </div>
           <div class="skill-pills">
-            <span class="skill-pill">HTML</span>
-            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Java</span>
             <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">Responsive Design</span>
-            <span class="skill-pill">Figma</span>
-            <span class="skill-pill">Accessibility</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">HTML5</span>
+            <span class="skill-pill">CSS3</span>
+            <span class="skill-pill">Responsive Web Design</span>
           </div>
         </div>
         <div class="skill-cat reveal d1">
           <div class="skill-cat-head">
-            <span class="skill-cat-name">AI Fundamentals</span>
+            <span class="skill-cat-name">AI &amp; Data</span>
             <span class="skill-cat-sub">Growing Expertise</span>
           </div>
           <div class="skill-pills">
-            <span class="skill-pill">Python</span>
-	    <span class="skill-pill">Natural language Processing</span>
-	    <span class="skill-pill">AI Ethics</span>
-            
+            <span class="skill-pill">Prompt Engineering</span>
+            <span class="skill-pill">Generative AI</span>
+            <span class="skill-pill">Data Analytics</span>
+            <span class="skill-pill">Data Visualization</span>
+            <span class="skill-pill">AI Fundamentals</span>
+            <span class="skill-pill">Natural Language Processing</span>
           </div>
         </div>
         <div class="skill-cat reveal d2">
           <div class="skill-cat-head">
-            <span class="skill-cat-name">Engineering &amp; Tools</span>
+            <span class="skill-cat-name">Software Dev &amp; Database</span>
             <span class="skill-cat-sub">Solid Foundation</span>
           </div>
           <div class="skill-pills">
-            <span class="skill-pill">C / C++</span>
-            <span class="skill-pill">Java</span>
-            <span class="skill-pill">Git &amp; GitHub</span>
+            <span class="skill-pill">Object-Oriented Programming</span>
             <span class="skill-pill">MySQL</span>
-            <span class="skill-pill">Operating system</span>
-            <span class="skill-pill">REST APIs</span>
-         
-            <span class="skill-pill">VS Code</span>
+            <span class="skill-pill">DBMS</span>
+            <span class="skill-pill">REST API Fundamentals</span>
+            <span class="skill-pill">Problem Solving</span>
+            <span class="skill-pill">Responsive UI Design</span>
           </div>
         </div>
         <div class="skill-cat reveal d3">
           <div class="skill-cat-head">
-            <span class="skill-cat-name">Soft Skills</span>
+            <span class="skill-cat-name">Testing &amp; Tools</span>
             <span class="skill-cat-sub">Always Relevant</span>
           </div>
           <div class="skill-pills">
-            <span class="skill-pill">Problem Solving</span>
-            <span class="skill-pill">Team Collaboration</span>
-            <span class="skill-pill">Communication</span>
-            <span class="skill-pill">Adaptability</span>
-            <span class="skill-pill">Quick Learner</span>
+            <span class="skill-pill">Manual Testing</span>
+            <span class="skill-pill">Test Case Design</span>
+            <span class="skill-pill">Bug Reporting</span>
+            <span class="skill-pill">SDLC &amp; STLC Fundamentals</span>
+            <span class="skill-pill">GitHub</span>
+            <span class="skill-pill">VS Code</span>
+            <span class="skill-pill">Microsoft Excel</span>
+            <span class="skill-pill">Canva</span>
           </div>
         </div>
       </div>
@@ -520,45 +678,39 @@ footer {
     <div class="section-eyebrow reveal">Continuous Learning</div>
     <h2 class="section-title reveal d1">Certifications &amp; <em>credentials</em></h2>
     <p class="cert-intro reveal d2">
-      Courses and credentials I've completed to sharpen my skills in frontend development,
-      artificial intelligence, and core engineering fundamentals.
+      Industry certifications and job simulations completed with IBM, Infosys Springboard,
+      and Forage — sharpening my skills in data, AI, and applied engineering.
     </p>
     <div class="cert-grid">
       <div class="cert-card reveal">
         <div class="cert-num">01</div>
-        <div class="cert-name">Responsive Web Design</div>
-        <div class="cert-issuer">freeCodeCamp</div>
-        <div class="cert-year">2024</div>
+        <div class="cert-name">Data Fundamentals</div>
+        <div class="cert-issuer">IBM</div>
+        <div class="cert-year">Jul 2026</div>
       </div>
       <div class="cert-card reveal d1">
         <div class="cert-num">02</div>
-        <div class="cert-name">Python for Everybody</div>
-        <div class="cert-issuer">University of Michigan · Coursera</div>
-        <div class="cert-year">2024</div>
+        <div class="cert-name">Artificial Intelligence Fundamentals</div>
+        <div class="cert-issuer">IBM SkillsBuild</div>
+        <div class="cert-year">Mar 2026</div>
       </div>
       <div class="cert-card reveal d2">
         <div class="cert-num">03</div>
-        <div class="cert-name">Introduction to Artificial Intelligence</div>
-        <div class="cert-issuer">Google / IBM SkillsBuild</div>
-        <div class="cert-year">2024</div>
+        <div class="cert-name">Introduction to OpenAI GPT Models</div>
+        <div class="cert-issuer">Infosys Springboard</div>
+        <div class="cert-year">Jan 2026</div>
       </div>
       <div class="cert-card reveal d3">
         <div class="cert-num">04</div>
-        <div class="cert-name">Natural Language Processing Fundamentals</div>
-        <div class="cert-issuer">NPTEL</div>
-        <div class="cert-year">2025</div>
+        <div class="cert-name">Prompt Engineering</div>
+        <div class="cert-issuer">Infosys Springboard</div>
+        <div class="cert-year">Jan 2026</div>
       </div>
       <div class="cert-card reveal">
         <div class="cert-num">05</div>
-        <div class="cert-name">Git &amp; GitHub for Developers</div>
-        <div class="cert-issuer">Coursera</div>
-        <div class="cert-year">2025</div>
-      </div>
-      <div class="cert-card reveal d1">
-        <div class="cert-num">06</div>
-        <div class="cert-name">Database Management with MySQL</div>
-        <div class="cert-issuer">Oracle Academy</div>
-        <div class="cert-year">2025</div>
+        <div class="cert-name">GenAI Powered Data Analytics — Job Simulation</div>
+        <div class="cert-issuer">Forage</div>
+        <div class="cert-year">Jun 2026</div>
       </div>
     </div>
   </div>
@@ -572,7 +724,7 @@ footer {
     <div class="contact-layout">
       <div>
         <p class="contact-lead reveal d2">
-          Open to internships, collaborations, and full-time roles in <em>frontend or AI development.</em>
+          Open to internships and full-time roles in <em>software development, testing, data analytics, or AI.</em>
         </p>
         <p class="contact-sub reveal d3">
           Whether you have a role in mind, a project to discuss, or just want to say hello —
@@ -583,14 +735,14 @@ footer {
         <a href="mailto:honraosaloni@gmail.com" class="contact-item">
           <div class="ci-left">
             <span class="ci-label">Email</span>
-            <span class="ci-value">saloni.honrao@email.com</span>
+            <span class="ci-value">honraosaloni@gmail.com</span>
           </div>
           <span class="ci-arrow">→</span>
         </a>
-        <a href="https://linkedin.com/in/salonihonrao" target="_blank" class="contact-item">
+        <a href="https://www.linkedin.com/in/saloni-honrao-5822a8316" target="_blank" class="contact-item">
           <div class="ci-left">
             <span class="ci-label">LinkedIn</span>
-            <span class="ci-value">linkedin.com/in/salonihonrao</span>
+            <span class="ci-value">linkedin.com/in/saloni-honrao</span>
           </div>
           <span class="ci-arrow">→</span>
         </a>
