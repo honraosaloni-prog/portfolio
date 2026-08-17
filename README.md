@@ -1,4 +1,3 @@
-
 Saloni Honrao — Portfolio
 A single-page personal portfolio site for Saloni Honrao, a Computer Engineering student and frontend developer based in Pune, India. Built with vanilla HTML, CSS, and JavaScript — no frameworks, no build step.
 
