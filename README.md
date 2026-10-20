@@ -2,7 +2,6 @@
 
 > Elegant, animated single-file portfolio website built with vanilla HTML, CSS, and JavaScript.
 
----
 
 🔗 **[Live Demo](https://honraosaloni-prog.github.io/portfolio/)**
 
