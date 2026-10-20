@@ -4,12 +4,9 @@
 
 ---
 
-## 🔗 Live Preview
-
-Open `https://honraosaloni-prog.github.io/portfolio/` directly in any browser — no build step, no dependencies, no server needed.
+🔗 **[Live Demo](https://honraosaloni-prog.github.io/portfolio/)**
 
 ---
-
 ## 👩‍💻 About
 
 Personal portfolio of **Saloni Sudhakar Honrao**, a Computer Engineering student from Pune, India.  
