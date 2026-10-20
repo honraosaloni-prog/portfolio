@@ -6,7 +6,7 @@
 
 ## 🔗 Live Preview
 
-Open `saloni-portfolio.html` directly in any browser — no build step, no dependencies, no server needed.
+Open `https://honraosaloni-prog.github.io/portfolio/` directly in any browser — no build step, no dependencies, no server needed.
 
 ---
 
