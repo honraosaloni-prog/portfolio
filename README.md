@@ -1,4 +1,3 @@
-
 # Saloni Honrao — Personal Portfolio 🔗 **[Live Demo](https://honraosaloni-prog.github.io/portfolio/)**
 
 > Elegant, animated single-file portfolio website built with vanilla HTML, CSS, and JavaScript.
